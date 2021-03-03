@@ -1,0 +1,188 @@
+.titile{
+    text-align: center;
+    color: blue;
+}
+
+.name{
+    color: red;
+}
+.center{
+    text-align: center;
+}
+.text1{
+    letter-spacing: 3px;
+    font-size: large;
+}
+.contenu{
+margin-left: 250px;
+margin-right: 250px;
+}
+.menu{
+    font-size: x-large;
+}
+
+
+.margin-top{
+    margin-top: 20px;
+
+}
+
+.span1{
+    color: tomato;
+    letter-spacing: 3px;
+}
+a{
+color: teal;
+}
+a:hover{
+    color: yellow;
+}
+
+.head-table{
+    color: rgb(122, 83, 32);
+    background-color: gray;
+}
+
+.btn{
+    color: green;
+    background-color:maroon;
+}
+
+.my-label{
+    color: darkgray;
+    letter-spacing: 3px;
+    font-size: large;
+}
+.content-login{
+    margin: auto;
+    width: 30%;
+}
+.shadow-card{
+    box-shadow:  0 19px 35px rgb(0, 0,0 ,0.30);
+}
+
+.card-title-persone{
+    color: blanchedalmond;
+}
+
+.card-hearder-back{
+    background-color: royalblue !important;
+}
+
+.card-perso{
+    box-shadow: 0 19px 40px rgba(0,0,0,0.30) !important
+}
+
+.my-label{
+    color: darkgrey;
+    letter-spacing: 3px;
+    font-size: large;
+}
+
+.colors {
+    position: absolute;
+    width: 214px;
+    height: 32px;
+    background: rgba(0,0,0,0.6);
+    top: 0;
+    -o-box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.3);
+    box-shadow: 0px 1px 2px 0px rgb(0 0 0 / 30%);
+}
+
+.colors {
+    right: calc(50% - 700px);
+}
+
+.colors a {
+    display: block;
+    float: left;
+    margin: 6px 0 6px 6px;
+    width: 20px;
+    height: 20px;
+    -webkit-transition: transform 50ms ease-in;
+    -webkit-transform: scale(1);
+    -ms-transition: transform 50ms ease-in;
+    -ms-transform: scale(1);
+    -moz-transition: transform 50ms ease-in;
+    -moz-transform: scale(1);
+    transition: transform 50ms ease-in;
+    transform: scale(1);
+}
+
+a {
+    color: rgba(0,154,255,0.3);
+    text-decoration: none;
+    line-height: inherit;
+    cursor: pointer;
+}
+
+.colors a.red {
+    background: #63191f;
+}
+
+.colors a.pink {
+    background: #631959;
+}
+
+.colors a.purple {
+    background: #4d196c;
+}
+
+.colors a.blue {
+    background: #16486c;
+}
+
+.colors a.turquoise {
+    background: #16636c;
+}
+
+.colors a.green {
+    background: #16663c;
+}
+
+.colors a.yellow {
+    background: #635e1f;
+}
+
+.colors a.orange {
+    background: #634a1f;
+}
+
+
+.lignesesp
+{
+ border-collapse : separate;
+ border-spacing : 35px;
+ margin-left: auto;
+margin-right: auto;
+}
+
+.chat{
+	width:100%;
+	height:50vh;
+	border: 1px solid #efefef;
+	border-radius: 3px;
+	margin:10px 0px;
+	padding:2em 3em;
+	overflow: auto;
+	box-shadow: inset 0px 1px 25px -11px #aaa;
+	background: white;
+
+}
+
+.wave{
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	height: 100%;
+	z-index: -1;
+}
+
+.img{
+	position: fixed;
+	justify-content: flex-end;
+        bottom: 25%;
+	left: 11.5%;
+        height: 51%;
+	z-index: -1;
+}
