@@ -24,7 +24,7 @@ public class HistoriqueDao {
         public  static List<Historique> getAllUsers() throws SQLException{
       List<Historique> his = new ArrayList<>();
         
-      String sql = "SELECT banqueesic.historique.idhistorique, banqueesic.historique.contenu, banqueesic.historique.date, banqueesic.person.idperson, banqueesic.person.nom, banqueesic.person.prenom, banqueesic.person.login, banqueesic.person.mdp FROM banqueesic.person inner join banqueesic.historique on banqueesic.historique.person_idperson=banqueesic.person.idperson";
+      String sql = "SELECT banqueesic.historique.idhistorique, banqueesic.historique.contenu, banqueesic.historique.date, banqueesic.person.idperson, banqueesic.person.nom, banqueesic.person.prenom, banqueesic.person.login, banqueesic.person.mdp FROM banqueesic.person inner join banqueesic.historique on banqueesic.historique.person_idperson=banqueesic.person.idperson and operations IS NULL";
         Connection connexion = AccessBd.getConnection();
         
         Statement st =  connexion.createStatement();
@@ -48,6 +48,29 @@ public class HistoriqueDao {
         }
         return his;
     }
+          public static List<Historique> getOperations(int id) throws SQLException {
+        List<Historique> his = new ArrayList<>();
+
+        String sql = "SELECT * FROM Historique where operations IS NOT NULL and person_idperson=?";
+        Connection connexion = AccessBd.getConnection();
+
+        PreparedStatement prepare = connexion.prepareStatement(sql);
+        prepare.setInt(1, id);
+
+        ResultSet rs = prepare.executeQuery();
+
+        while (rs.next()) {
+            Historique h = new Historique();
+            h.setId(rs.getInt("idhistorique"));
+            h.setContenu(rs.getString("contenu"));
+            h.setDatecreation(rs.getDate("date"));
+            h.setOperations(rs.getString("operations"));
+
+            his.add(h);
+        }
+
+        return his;
+    }
         
                   public static void UpdateUser (int id) throws SQLException{
            String sql ="INSERT INTO banqueesic.historique (contenu, person_idperson) VALUES ('Update',?)";
@@ -68,5 +91,18 @@ public class HistoriqueDao {
         
            
           }
+          
+                    public static void InsertionOperations (int contenu,int operations,int id) throws SQLException{
+           String sql ="INSERT INTO banqueesic.historique (contenu, operations, person_idperson) VALUES (?,?,?)";
+           Connection connexion = AccessBd.getConnection();
+           PreparedStatement prepare = connexion.prepareStatement(sql);
+           prepare.setInt(1, contenu);
+           prepare.setInt(2, operations);
+           prepare.setInt(3, id);
+           prepare.execute();
+        
+           
+          }
+          
     
 }

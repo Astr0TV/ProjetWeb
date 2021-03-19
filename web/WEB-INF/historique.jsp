@@ -19,24 +19,23 @@
         <img class="wave" src="img/wave.png">
         <img class="img" src="img/bg.svg">
         <div class="container mt-4">
-            <h1 class="titile">Bonjour ${user.nom}!</h1>
+            <h1 class="titile">HISTORIQUE</h1>
             <br>
             <div>
                 <div class="row">
                     <c:forEach items="${historiques}" var="m">
-                        <div class="col-sm-3 mt-4">
-                            <div class="card card-perso">
-                                <div class="card-body">
-                                    <strong class="text-info">Utilisateur : ${m.user.nom}</strong><br>
-                                    <strong class="text-info">${m.contenu}</strong><br>
-                                    <strong class="text-info">Fais le : ${m.datecreation}</strong><br>
+                        <div class="list-group">
+                            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start list-group-item-secondary">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1">Utilisateur : ${m.user.nom}</h5>
+                                    <small>${m.datecreation}</small>
                                 </div>
-                            </div>
-                        
+                                <p class="mb-1">${m.contenu}</p>
+                                <small>Donec id elit non mi porta.</small>
+                            </a><br>
+                        </c:forEach>
                     </div>
-                    </c:forEach>
                 </div>
             </div>
-        </div>
     </body>
 </html>

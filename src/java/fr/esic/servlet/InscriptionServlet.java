@@ -77,8 +77,10 @@ public class InscriptionServlet extends HttpServlet {
         String nom = request.getParameter("nom");
         String prenom = request.getParameter("prenom");
         String login = request.getParameter("login");
+        String adresse = request.getParameter("adresse");
+        String gsm = request.getParameter("gsm");
         String mdp = request.getParameter("mdp");
-        User u = new User(nom, prenom, login, mdp);
+        User u = new User(nom, prenom, adresse, gsm, login, mdp);
         try {
             UserDao.insertPerson(u);
             request.getRequestDispatcher("index.jsp").forward(request, response);

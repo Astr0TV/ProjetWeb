@@ -66,10 +66,19 @@ public class ActiveCompteServelet extends HttpServlet {
                 User user =(User) session.getAttribute("user");
                 if (user != null) {
                     try {
-                        
-                    int nucarte =Integer.parseInt(request.getParameter("nucarte")); 
+                  if (user.getType().equals("conseiller")) {
+                         int nucarte =Integer.parseInt(request.getParameter("nucarte")); 
                         CompteDao.ActiveCompte(nucarte);
                request.getRequestDispatcher("Conseiller").forward(request, response);
+                            
+                        }
+                        if (user.getType().equals("client")) {
+                          int nucarte =Integer.parseInt(request.getParameter("nucarte")); 
+                        CompteDao.ActiveCompte(nucarte);
+                        request.getRequestDispatcher("ClientHome").forward(request, response);
+                            
+                        }
+                        
                         
 
                } catch (Exception e) {

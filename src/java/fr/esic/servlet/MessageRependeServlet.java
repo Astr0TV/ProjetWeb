@@ -43,7 +43,7 @@ public class MessageRependeServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet MessageRependeServlet</title>");            
+            out.println("<title>Servlet MessageRependeServlet</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet MessageRependeServlet at " + request.getContextPath() + "</h1>");
@@ -64,16 +64,19 @@ public class MessageRependeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-                HttpSession session = request.getSession(true);
-        User user =(User) session.getAttribute("user");
-                if (user != null) {
-                    try {   
+        HttpSession session = request.getSession(true);
+        User user = (User) session.getAttribute("user");
+        if (user != null) {
+            try {
+                int id =Integer.parseInt(request.getParameter("id"));
+                List<Message> messages = MessageDao.AfficheContenu(id);
+                request.setAttribute("messages", messages);
                 request.getRequestDispatcher("WEB-INF/messagerepende.jsp").forward(request, response);
-               } catch (Exception e) {
-             PrintWriter out = response.getWriter();
-             out.println("expt :"+e.getMessage());
-        }
-            
+            } catch (Exception e) {
+                PrintWriter out = response.getWriter();
+                out.println("expt :" + e.getMessage());
+            }
+
         } else {
             request.setAttribute("msg", "tu est pas connecter");
             request.getRequestDispatcher("index.jsp").forward(request, response);
@@ -92,19 +95,20 @@ public class MessageRependeServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession(true);
-        User user =(User) session.getAttribute("user");
+        User user = (User) session.getAttribute("user");
         if (user != null) {
-                    try {
-               String contenu = request.getParameter("message");
-               int numperson = Integer.parseInt(request.getParameter("id"));
-            MessageDao.InsertMessageConseiller(contenu, numperson);
-        
-            response.sendRedirect("MessageRepende");
-               } catch (Exception e) {
-             PrintWriter out = response.getWriter();
-             out.println("expt :"+e.getMessage());
-        }
-            
+            try {
+                String contenu = request.getParameter("message");
+                int numperson = Integer.parseInt(request.getParameter("id"));
+                String loginclient = request.getParameter("loginclient");
+                MessageDao.InsertMessageConseiller(contenu, loginclient, numperson);
+
+                response.sendRedirect("MessageStaff");
+            } catch (Exception e) {
+                PrintWriter out = response.getWriter();
+                out.println("expt :" + e.getMessage());
+            }
+
         } else {
             request.setAttribute("msg", "tu est pas connecter");
             request.getRequestDispatcher("index.jsp").forward(request, response);

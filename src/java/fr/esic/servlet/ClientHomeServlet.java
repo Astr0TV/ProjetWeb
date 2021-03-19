@@ -6,12 +6,17 @@
 package fr.esic.servlet;
 
 import fr.esic.bdUser.CompteDao;
+import fr.esic.bdUser.MessageDao;
 import fr.esic.bdUser.UserDao;
 import fr.esic.model.Compte;
+import fr.esic.model.Message;
 import fr.esic.model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -43,7 +48,7 @@ public class ClientHomeServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ClientHomeServlet</title>");            
+            out.println("<title>Servlet ClientHomeServlet</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet ClientHomeServlet at " + request.getContextPath() + "</h1>");
@@ -65,24 +70,27 @@ public class ClientHomeServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession(true);
-        User user =(User) session.getAttribute("user");
-        Compte compte =(Compte) session.getAttribute("compte");
- 
-                if (user != null) {
-                    try {
-                     
-            List<Compte> comptes = CompteDao.getAllCompte(user);
-        request.setAttribute("comptes", comptes);
-       request.setAttribute("user", user);
-        request.getRequestDispatcher("WEB-INF/homeclient.jsp").forward(request, response);
-                            
-                            
-                        
-               } catch (Exception e) {
-             PrintWriter out = response.getWriter();
-             out.println("expt :"+e.getMessage());
-        }
-            
+        User user = (User) session.getAttribute("user");
+        Compte compte = (Compte) session.getAttribute("compte");
+
+        if (user != null) {
+            try {
+                String login = user.getLogin();
+                List<Message> messages = MessageDao.getMessageConseiller(login);
+                request.setAttribute("messages", messages);
+                List<Compte> comptes = CompteDao.getAllCompte(user);
+                request.setAttribute("comptes", comptes);
+                request.setAttribute("user", user);
+                Date now = new Date();
+                String format1 = new SimpleDateFormat("yyyy-MM-dd", Locale.FRANCE).format(now);
+                request.setAttribute("format1", format1);
+                request.getRequestDispatcher("WEB-INF/homeclient.jsp").forward(request, response);
+
+            } catch (Exception e) {
+                PrintWriter out = response.getWriter();
+                out.println("expt :" + e.getMessage());
+            }
+
         } else {
             request.setAttribute("msg", "tu est pas connecter");
             request.getRequestDispatcher("index.jsp").forward(request, response);

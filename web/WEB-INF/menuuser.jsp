@@ -24,11 +24,17 @@
           <li class="nav-item">
             <a class="btn btn-sm btn-outline-secondary" href="Profile">PROFILE</a>
           </li>
+           <li class="nav-item">
+            <a class="btn btn-sm btn-outline-secondary" href="Operations">OPERATIONS</a>
+          </li>
           <li class="nav-item">
-            <a class="btn btn-sm btn-outline-secondary" href="Message">MESSAGE</a>
+            <a class="btn btn-sm btn-outline-secondary" href="Message?login=${user.login}">MESSAGE</a>
           </li>
           <li class="nav-item">
             <a class="btn btn-sm btn-outline-secondary" href="CompteClient">CREE COMPTE</a>
+          </li>
+          <li class="nav-item">
+            <a class="btn btn-sm btn-outline-secondary" href="Decouvert">Découvert</a>
           </li>
           <li class="nav-item">
             <a class="btn btn-sm " href="Deconnexion"><span style="color: red" class="material-icons orange600">power_settings_new</span></a>

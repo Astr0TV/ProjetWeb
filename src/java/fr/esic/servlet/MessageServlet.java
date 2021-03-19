@@ -42,7 +42,7 @@ public class MessageServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet MessageServlet</title>");            
+            out.println("<title>Servlet MessageServlet</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet MessageServlet at " + request.getContextPath() + "</h1>");
@@ -63,18 +63,19 @@ public class MessageServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-              HttpSession session = request.getSession(true);
-        User user =(User) session.getAttribute("user");
-                if (user != null) {
-                    try {
-                        List<Message> messages = MessageDao.getMessageConseiller();
-                        request.setAttribute("messages", messages);
-       request.getRequestDispatcher("WEB-INF/message.jsp").forward(request, response);
-               } catch (Exception e) {
-             PrintWriter out = response.getWriter();
-             out.println("expt :"+e.getMessage());
-        }
-            
+        HttpSession session = request.getSession(true);
+        User user = (User) session.getAttribute("user");
+        if (user != null) {
+            try {
+                String login = request.getParameter("login");
+                List<Message> messages = MessageDao.getMessageConseiller(login);
+                request.setAttribute("messages", messages);
+                request.getRequestDispatcher("WEB-INF/message.jsp").forward(request, response);
+            } catch (Exception e) {
+                PrintWriter out = response.getWriter();
+                out.println("expt :" + e.getMessage());
+            }
+
         } else {
             request.setAttribute("msg", "tu est pas connecter");
             request.getRequestDispatcher("index.jsp").forward(request, response);
@@ -93,20 +94,20 @@ public class MessageServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession(true);
-        User user =(User) session.getAttribute("user");
-                if (user != null) {
-                    try {
-                        String message = request.getParameter("message");
-          
-                        int numperson = Integer.parseInt(request.getParameter("id"));
-                        MessageDao.InsertMessage(message, numperson);
-                        MessageDao.AfficheMessageClient(numperson);
-                        response.sendRedirect("Message");
-               } catch (Exception e) {
-             PrintWriter out = response.getWriter();
-             out.println("expt :"+e.getMessage());
-        }
-            
+        User user = (User) session.getAttribute("user");
+        if (user != null) {
+            try {
+                String message = request.getParameter("message");
+
+                int numperson = Integer.parseInt(request.getParameter("id"));
+                MessageDao.InsertMessage(message, numperson);
+                MessageDao.AfficheMessageClient(numperson);
+                response.sendRedirect("Message");
+            } catch (Exception e) {
+                PrintWriter out = response.getWriter();
+                out.println("expt :" + e.getMessage());
+            }
+
         } else {
             request.setAttribute("msg", "tu est pas connecter");
             request.getRequestDispatcher("index.jsp").forward(request, response);

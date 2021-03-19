@@ -5,19 +5,13 @@
  */
 package fr.esic.servlet;
 
-import fr.esic.bdUser.CompteDao;
-import fr.esic.bdUser.MessageDao;
+import fr.esic.bdUser.HistoriqueDao;
 import fr.esic.bdUser.UserDao;
-import fr.esic.model.Compte;
-import fr.esic.model.Message;
 import fr.esic.model.User;
+import fr.esic.model.Historique;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -29,8 +23,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author Huawei
  */
-@WebServlet(name = "ConseillerServlet", urlPatterns = {"/Conseiller"})
-public class ConseillerServlet extends HttpServlet {
+@WebServlet(name = "OperationsSerlvet", urlPatterns = {"/Operations"})
+public class OperationsSerlvet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -49,10 +43,10 @@ public class ConseillerServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ConseillerServlet</title>");            
+            out.println("<title>Servlet OperationsSerlvet</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ConseillerServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet OperationsSerlvet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -70,35 +64,25 @@ public class ConseillerServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-                HttpSession session = request.getSession(true);
-                User user =(User) session.getAttribute("user");
-                if (user != null) {
-                    try {
-                        List<Message> messages = MessageDao.getMessageStaff();
-                        List<Compte> comptes = CompteDao.allCompte();
-                        List<Compte> comptes2 = CompteDao.allClientActive();
-//                         String newstring = new SimpleDateFormat("yyyy-MM-dd").format(date);
-                         Date now = new Date(); 
-                         String format1 = new SimpleDateFormat("yyyy-MM-dd", Locale.FRANCE).format(now);
-                        request.setAttribute("format1", format1);
-                         request.setAttribute("messages", messages);
-                        request.setAttribute("comptes", comptes);
-                        request.setAttribute("comptes2", comptes2);
-                        
-     
-        
-       request.getRequestDispatcher("WEB-INF/homeconseiller.jsp").forward(request, response);
-               } catch (Exception e) {
-             PrintWriter out = response.getWriter();
-             out.println("expt :"+e.getMessage());
-        }
-            
+        HttpSession session = request.getSession(true);
+        User user = (User) session.getAttribute("user");
+        if (user != null) {
+            try {
+                int idperson = user.getId();
+                    List<Historique> historiques = HistoriqueDao.getOperations(idperson);
+                    request.setAttribute("historiques", historiques);
+                request.getRequestDispatcher("WEB-INF/operations.jsp").forward(request, response);
+
+            } catch (Exception e) {
+                PrintWriter out = response.getWriter();
+                out.println("expt :" + e.getMessage());
+            }
+
         } else {
             request.setAttribute("msg", "tu est pas connecter");
             request.getRequestDispatcher("index.jsp").forward(request, response);
         }
     }
-    
 
     /**
      * Handles the HTTP <code>POST</code> method.

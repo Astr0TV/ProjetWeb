@@ -41,7 +41,7 @@ public class UpdateUserServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet UpdateUserServlet</title>");            
+            out.println("<title>Servlet UpdateUserServlet</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet UpdateUserServlet at " + request.getContextPath() + "</h1>");
@@ -63,52 +63,58 @@ public class UpdateUserServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession(true);
-        User user =(User) session.getAttribute("user");
+        User user = (User) session.getAttribute("user");
         int a = Integer.parseInt(request.getParameter("id"));
-                if (user != null) {
-                    try {
-                        if (user.getType().equals("admin")) {
-        String nom    = request.getParameter("nom");
-        String prenom = request.getParameter("prenom");
-        String mdp    = request.getParameter("mdp");
-        String log    = request.getParameter("login");
-            UserDao.UpdateUser(nom, prenom, mdp, log);
-             HistoriqueDao.UpdateUser(a);
-              User u = UserDao.AfficheUser(a);
-              request.setAttribute("u", u);
-           request.getRequestDispatcher("WEB-INF/update.jsp").forward(request, response);
-                            
-                        }
-              if (user.getType().equals("conseiller")) {
-        String nom    = request.getParameter("nom");
-        String prenom = request.getParameter("prenom");
-        String mdp    = request.getParameter("mdp");
-        String log    = request.getParameter("login");
-            UserDao.UpdateUser(nom, prenom, mdp, log);
-             HistoriqueDao.UpdateUser(a);
-              User u = UserDao.AfficheUser(a);
-              request.setAttribute("u", u);
-           request.getRequestDispatcher("WEB-INF/updateconseiller.jsp").forward(request, response);
-                            
-                        }
-                   if (user.getType().equals("client")) {
-        String nom    = request.getParameter("nom");
-        String prenom = request.getParameter("prenom");
-        String mdp    = request.getParameter("mdp");
-        String log    = request.getParameter("login");
-            UserDao.UpdateUser(nom, prenom, mdp, log);
-             HistoriqueDao.UpdateUser(a);
-              User u = UserDao.AfficheUser(a);
-              request.setAttribute("u", u);
-           request.getRequestDispatcher("WEB-INF/updateclient.jsp").forward(request, response);
-                            
-                        }
+        if (user != null) {
+            try {
+                if (user.getType().equals("admin")) {
+                    String nom = request.getParameter("nom");
+                    String prenom = request.getParameter("prenom");
+                    String adresse = request.getParameter("adresse");
+                    String gsm = request.getParameter("gsm");
+                    String mdp = request.getParameter("mdp");
+                    String log = request.getParameter("login");
+                    UserDao.UpdateUser(nom, prenom, adresse, gsm, mdp, log);
+                    HistoriqueDao.UpdateUser(a);
+                    User u = UserDao.AfficheUser(a);
+                    request.setAttribute("u", u);
+                    request.getRequestDispatcher("WEB-INF/update.jsp").forward(request, response);
 
-               } catch (Exception e) {
-             PrintWriter out = response.getWriter();
-             out.println("expt :"+e.getMessage());
-        }
-            
+                }
+                if (user.getType().equals("conseiller")) {
+                    String nom = request.getParameter("nom");
+                    String prenom = request.getParameter("prenom");
+                    String adresse = request.getParameter("adresse");
+                    String gsm = request.getParameter("gsm");
+                    String mdp = request.getParameter("mdp");
+                    String log = request.getParameter("login");
+                    UserDao.UpdateUser(nom, prenom, adresse, gsm, mdp, log);
+                    HistoriqueDao.UpdateUser(a);
+                    User u = UserDao.AfficheUser(a);
+                    request.setAttribute("u", u);
+                    request.getRequestDispatcher("WEB-INF/updateconseiller.jsp").forward(request, response);
+
+                }
+                if (user.getType().equals("client")) {
+                    String nom = request.getParameter("nom");
+                    String prenom = request.getParameter("prenom");
+                    String adresse = request.getParameter("adresse");
+                    String gsm = request.getParameter("gsm");
+                    String mdp = request.getParameter("mdp");
+                    String log = request.getParameter("login");
+                    UserDao.UpdateUser(nom, prenom, adresse, gsm, mdp, log);
+                    HistoriqueDao.UpdateUser(a);
+                    User u = UserDao.AfficheUser(a);
+                    request.setAttribute("u", u);
+                    request.getRequestDispatcher("WEB-INF/updateclient.jsp").forward(request, response);
+
+                }
+
+            } catch (Exception e) {
+                PrintWriter out = response.getWriter();
+                out.println("expt :" + e.getMessage());
+            }
+
         } else {
             request.setAttribute("msg", "tu est pas connecter");
             request.getRequestDispatcher("index.jsp").forward(request, response);

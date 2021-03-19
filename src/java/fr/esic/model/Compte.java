@@ -19,21 +19,27 @@ public class Compte {
     private boolean etatcarte;
     private String paiment;
     private Date date_expiration;
+    private int montantdecouvert;
+    private boolean etatdecouvert;
     private User user;
     
     public Compte (){
     
           }
 
-    public Compte(String solde,int nucompte , int nucarte, boolean etatcarte, String paiment, Date date_expiration, User user) {
+    public Compte(String solde, int nucompte, int nucarte, boolean etatcarte, String paiment, Date date_expiration, int montantdecouvert, boolean etatdecouvert, User user) {
         this.solde = solde;
         this.nucompte = nucompte;
         this.nucarte = nucarte;
         this.etatcarte = etatcarte;
         this.paiment = paiment;
         this.date_expiration = date_expiration;
+        this.montantdecouvert = montantdecouvert;
+        this.etatdecouvert = etatdecouvert;
         this.user = user;
     }
+
+
 
     public int getId() {
         return id;
@@ -93,6 +99,24 @@ public class Compte {
     public void setDate_expiration(Date date_expiration) {
         this.date_expiration = date_expiration;
     }
+
+    public int getMontantdecouvert() {
+        return montantdecouvert;
+    }
+
+    public void setMontantdecouvert(int montantdecouvert) {
+        this.montantdecouvert = montantdecouvert;
+    }
+
+    public boolean isEtatdecouvert() {
+        return etatdecouvert;
+    }
+
+    public void setEtatdecouvert(boolean etatdecouvert) {
+        this.etatdecouvert = etatdecouvert;
+    }
+    
+    
 
     public User getUser() {
         return user;

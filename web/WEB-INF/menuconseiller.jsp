@@ -27,6 +27,9 @@
           <li class="nav-item">
             <a class="btn btn-sm btn-outline-secondary" href="MessageStaff">MESSAGE</a>
           </li>
+            <li class="nav-item">
+            <a class="btn btn-sm btn-outline-secondary" href="DecouvertConseiler">Découvert</a>
+          </li>
           <li class="nav-item">
             <a class="btn btn-sm " href="Deconnexion"><span style="color: red" class="material-icons orange600">power_settings_new</span></a>
           </li>

@@ -8,30 +8,34 @@ package fr.esic.model;
 import java.sql.Blob;
 import java.sql.Date;
 
-
 /**
  *
  * @author Huawei
  */
 public class User {
+
     private int id;
     private String nom;
     private String prenom;
+    private String adresse;
+    private String gsm;
     private String login;
     private String mdp;
     private Date date;
     private Boolean etat;
     private String type;
-    private Blob image;
-    
-    public User(){
-        
+    private byte[] image;
+
+    public User() {
+
     }
 
-    public User(String nom, String prenom, String login, String mdp) {
-        
+    public User(String nom, String prenom, String adresse,String gsm , String login, String mdp) {
+
         this.nom = nom;
         this.prenom = prenom;
+        this.adresse = adresse;
+        this.gsm = gsm;
         this.login = login;
         this.mdp = mdp;
     }
@@ -58,6 +62,22 @@ public class User {
 
     public void setPrenom(String prenom) {
         this.prenom = prenom;
+    }
+
+    public String getAdresse() {
+        return adresse;
+    }
+
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
+    }
+
+    public String getGsm() {
+        return gsm;
+    }
+
+    public void setGsm(String gsm) {
+        this.gsm = gsm;
     }
 
     public String getLogin() {
@@ -99,6 +119,13 @@ public class User {
     public void setType(String type) {
         this.type = type;
     }
-    
-    
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
+
 }

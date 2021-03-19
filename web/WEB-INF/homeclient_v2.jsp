@@ -37,7 +37,7 @@
                                     <strong class="text-info">Numéro de carte : ${m.nucarte}</strong><br>
                                     <strong class="text-info">Solde : ${m.solde}</strong><br>
                                     <strong class="text-info">Date d’expiration : ${m.date_expiration}</strong><br>
-                                    <center><button  type="submit"  onclick="location.href ='ActiveCompte?nucarte=${m.nucarte}'" class="btn btn-success" >Acrive</button></center>
+                                    <center><a class="btn btn-sm " onclick="location.href ='DesactiverCompte?nucarte=${m.nucarte}'"><span style="color: green" onclick="location.href ='DesactiverCompte?nucarte=${m.nucarte}'" class="material-icons orange600">block</span></a> </center>
                                 </div>
                             </div>
                         

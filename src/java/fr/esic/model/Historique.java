@@ -15,6 +15,7 @@ public class Historique {
     private int id;
     private String contenu;
     private Date datecreation;
+    private String Operations;
     private User user;
     
 
@@ -23,9 +24,10 @@ public Historique(){
 
 }
 
-    public Historique(String contenu, Date datecreation, User user) {
+    public Historique(String contenu, Date datecreation,String Operations , User user) {
         this.contenu = contenu;
         this.datecreation = datecreation;
+        this.Operations = Operations;
         this.user = user;
     }
 
@@ -52,6 +54,16 @@ public Historique(){
     public void setDatecreation(Date datecreation) {
         this.datecreation = datecreation;
     }
+
+    public String getOperations() {
+        return Operations;
+    }
+
+    public void setOperations(String Operations) {
+        this.Operations = Operations;
+    }
+    
+    
 
     public User getUser() {
         return user;

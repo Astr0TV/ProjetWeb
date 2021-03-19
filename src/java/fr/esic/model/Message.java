@@ -15,6 +15,7 @@ public class Message {
     private int id;
     private String contenu;
     private Date date_message;
+    private String loginclient;
     private User user;
     
     
@@ -22,9 +23,10 @@ public class Message {
        
    }
 
-    public Message(String contenu,Date date_message ,String loginfrom, User user) {
+    public Message(String contenu,Date date_message ,String loginclient, User user) {
         this.contenu = contenu;
         this.date_message = date_message;
+        this.loginclient = loginclient;
         this.user = user;
     }
 
@@ -50,6 +52,14 @@ public class Message {
 
     public void setDate_message(Date date_message) {
         this.date_message = date_message;
+    }
+
+    public String getLoginclient() {
+        return loginclient;
+    }
+
+    public void setLoginclient(String loginclient) {
+        this.loginclient = loginclient;
     }
 
     

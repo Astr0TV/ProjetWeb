@@ -93,12 +93,14 @@ public class AjouteUserServlet extends HttpServlet {
         User user =(User) session.getAttribute("user");
          String nom = request.getParameter("nom");
         String prenom = request.getParameter("prenom");
+        String adresse = request.getParameter("adresse");
+        String gsm = request.getParameter("gsm");
         String login = request.getParameter("login");
         String mdp = request.getParameter("mdp");
         int id =Integer.parseInt(request.getParameter("id"));
                 if (user != null) {
                     try {
-                        UserDao.InsertConseiller(nom, prenom, login, mdp);
+                        UserDao.InsertConseiller(nom, prenom, adresse, gsm, login, mdp);
                         HistoriqueDao.InsertionUser(id);
                            request.getRequestDispatcher("WEB-INF/newuser.jsp").forward(request, response);
 

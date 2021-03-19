@@ -42,7 +42,7 @@ public class UpdatePageServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet UpdateServlet</title>");            
+            out.println("<title>Servlet UpdateServlet</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet UpdateServlet at " + request.getContextPath() + "</h1>");
@@ -64,19 +64,19 @@ public class UpdatePageServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession(true);
-        User user =(User) session.getAttribute("user");
-                if (user != null) {
-                    try {
-       int a = Integer.parseInt(request.getParameter("id"));
-       User u = UserDao.AfficheUser(a);
-           request.setAttribute("u", u);
-                        
-       request.getRequestDispatcher("WEB-INF/update.jsp").forward(request, response);
-               } catch (Exception e) {
-             PrintWriter out = response.getWriter();
-             out.println("expt :"+e.getMessage());
-        }
-            
+        User user = (User) session.getAttribute("user");
+        if (user != null) {
+            try {
+                int a = Integer.parseInt(request.getParameter("id"));
+                User u = UserDao.AfficheUser(a);
+                request.setAttribute("u", u);
+
+                request.getRequestDispatcher("WEB-INF/update.jsp").forward(request, response);
+            } catch (Exception e) {
+                PrintWriter out = response.getWriter();
+                out.println("expt :" + e.getMessage());
+            }
+
         } else {
             request.setAttribute("msg", "tu est pas connecter");
             request.getRequestDispatcher("index.jsp").forward(request, response);

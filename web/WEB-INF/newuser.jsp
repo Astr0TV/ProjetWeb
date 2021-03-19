@@ -14,44 +14,52 @@
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
         <link rel="stylesheet"
-                  href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css"
-                  integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">  
+              href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css"
+              integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">  
         <title>JSP Page</title>
     </head>
     <body>
-               <%@include file="menu.jsp" %>
-               <img class="wave" src="img/wave.png">
-               <img class="img" src="img/bg.svg">
+        <%@include file="menu.jsp" %>
+        <img class="wave" src="img/wave.png">
+        <img class="img" src="img/bg.svg">
         <form action="AjouteUser?id=${user.id}" method="Post">
             <h1 class="titile">Bonjour ${user.nom} !</h1> <h1 name="id" hidden="">?id=${user.id} !</h1>
-           <br>
-  <div class="container mt-2"> 
-       <div class="content-login">
-           <center>
-               <table class="lignesesp">
-                   <tr>
-                   <td><label for="nom"  class="my-label">NOM</label></td>
-                   <td><input type="text" name="nom"  " class="form-control" style="width: 250px"></td>
-                   </tr>
-                <tr>
-          <td><label for="login" class="my-label">PRENOM</label></td>
-          <td> <input type="text" name="prenom"   class="form-control" style="width: 250px"></td>
-               </tr>
+            <br>
+            <div class="container mt-2"> 
+                <div class="content-login">
+                    <center>
+                        <table class="lignesesp">
+                            <tr>
+                                <td><label for="nom"  class="my-label">NOM</label></td>
+                                <td><input type="text" name="nom"  " class="form-control" style="width: 250px"></td>
+                            </tr>
+                            <tr>
+                                <td><label for="login" class="my-label">PRENOM</label></td>
+                                <td> <input type="text" name="prenom"   class="form-control" style="width: 250px"></td>
+                            </tr>
+                            <tr>
+                                <td><label for="login" class="my-label">ADRESSE</label></td>
+                                <td> <input type="text" name="adresse"   class="form-control" style="width: 250px"></td>
+                            </tr>
+                            <tr>
+                                <td><label for="login" class="my-label">GSM</label></td>
+                                <td> <input type="text" name="gsm"   class="form-control" style="width: 250px"></td>
+                            </tr>
 
-   <tr>
-   <td><label for="login" class="my-label">LOGIN :</label></td>
-   <td><input type="text" name="login"   class="form-control" style="width: 250px"></td>
-   </tr>
+                            <tr>
+                                <td><label for="login" class="my-label">LOGIN :</label></td>
+                                <td><input type="text" name="login"   class="form-control" style="width: 250px"></td>
+                            </tr>
 
-<tr>
-   <td><label for="login" class="my-label">PASSWORD</label></td>
-   <td><input type="text" id="mdp" name="mdp"   class="form-control" style="width: 250px"></td>
-   </tr>
-</table>
-   <button type="submit"  onclick="alert(Ajoute avec succe)" class="btn btn-primary" >VALIDER</button>
-   </center>
-       </div> 
-   </div>
-   </form>
+                            <tr>
+                                <td><label for="login" class="my-label">PASSWORD</label></td>
+                                <td><input type="text" id="mdp" name="mdp"   class="form-control" style="width: 250px"></td>
+                            </tr>
+                        </table>
+                        <button type="submit"  onclick="alert(Ajoute avec succe)" class="btn btn-primary" >VALIDER</button>
+                    </center>
+                </div> 
+            </div>
+        </form>
     </body>
 </html>
